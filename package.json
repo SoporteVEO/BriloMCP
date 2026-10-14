@@ -1,0 +1,46 @@
+{
+  "name": "brilo-sqlserver-mcp",
+  "version": "1.1.0",
+  "description": "Read-only MCP server for the Brilo ERP SQL Server database. Provides schema search, table inspection, relationship discovery, ERP documentation lookup, query generation, SQL safety validation, and read-only SQL execution tools for Cursor and remote agents. Deployable to Vercel with Bearer-token authentication.",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "brilo-sqlserver-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "dev:http": "tsx src/httpServer.ts",
+    "dev:vercel": "vercel dev",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "start:http": "node dist/httpServer.js",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p api/tsconfig.json",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "sql-server",
+    "mssql",
+    "brilo",
+    "erp",
+    "cursor",
+    "vercel"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "dotenv": "^16.4.5",
+    "mssql": "^11.0.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/mssql": "^9.1.5",
+    "@types/node": "^22.9.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
