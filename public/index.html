@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>brilo-sqlserver-mcp</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body {
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        max-width: 720px;
+        margin: 4rem auto;
+        padding: 0 1.25rem;
+        line-height: 1.55;
+      }
+      h1 { margin-bottom: 0.25rem; }
+      .muted { color: #6b7280; }
+      code, pre {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.95em;
+      }
+      pre {
+        background: rgba(127, 127, 127, 0.12);
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+      ul { padding-left: 1.25rem; }
+      a { color: #2563eb; }
+    </style>
+  </head>
+  <body>
+    <h1>brilo-sqlserver-mcp</h1>
+    <p class="muted">
+      Read-only Model Context Protocol server for the Brilo ERP SQL Server
+      database. This is an API endpoint — there is no UI here.
+    </p>
+
+    <h2>Endpoints</h2>
+    <ul>
+      <li><code>GET&nbsp;/health</code> &mdash; public health check (no auth).</li>
+      <li>
+        <code>POST&nbsp;/mcp</code> &mdash; MCP Streamable HTTP endpoint.
+        Requires <code>Authorization: Bearer &lt;MCP_AUTH_TOKEN&gt;</code>.
+      </li>
+    </ul>
+
+    <h2>Quick check</h2>
+    <pre><code>curl https://&lt;this-host&gt;/health
+curl -X POST https://&lt;this-host&gt;/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -H "Authorization: Bearer $MCP_AUTH_TOKEN" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"curl","version":"0"}}}'</code></pre>
+
+    <p class="muted">
+      Source: <a href="https://github.com/SoporteVEO/BriloMCP">github.com/SoporteVEO/BriloMCP</a>
+    </p>
+  </body>
+</html>
